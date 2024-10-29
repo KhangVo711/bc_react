@@ -4,13 +4,13 @@ import axios from 'axios';
 
 export default function Login() {
     const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
 
     });
     const [message, setMessage] = useState('');
-    const [token, setToken] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -30,24 +30,23 @@ export default function Login() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                }
+                },
+                withCredentials: true
             });
-            console.log(response.data);
+            // console.log(response.data);
             // console.log(response.data.token);
             const token = response.data.token;
-            setToken(token);
+ 
             localStorage.setItem("jwt", token);
             setMessage(response.data.message);
 
-            // // setLogin(true);
-            // const user = response.data.user;
-            // // setData(user);
+            const user = response.data.user;
       
-            // if (user.role === "admin") {
-            //   window.location.href = 'http://localhost:5001/';
-            // } else {
-            //   navigate('/');
-            // }
+            if (user.role === "admin") {
+              window.location.href = 'http://localhost:5001/';
+            } else {
+              navigate('/');
+            }
       
           } catch (error) {
             setMessage(error.response ? error.response.data.message : 'An error occurred');

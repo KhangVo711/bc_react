@@ -4,7 +4,6 @@ import axios from "axios";
 
 export default function Product() {
     const [products, setProducts] = useState([]);
-    console.log(products);
     useEffect(() => {
         axios.get("http://localhost:5001/product")
     .then((response) => {

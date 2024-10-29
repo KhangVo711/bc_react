@@ -9,18 +9,28 @@ export default function Menu() {
             name: "Sản phẩm",
             url: "/product"
         },
-        {
-            name: "Profile",
-            url: "#"
-        },
-        {
+
+
+    ]
+    if (localStorage.getItem("jwt")) {
+        navItems.push(
+            {
+                name: "Profile",
+                url: "/profile"
+            },
+            {
+                name: "Đăng xuất",
+                url: "/logout"
+            },
+        );
+    } else {
+        navItems.push({
             name: "Đăng nhập",
             url: "/login"
-        },
-      
-    ]
-    const nav = navItems.map((navItem, index) => ( <NavItem key={index} navI = {navItem} /> ))
-    return(
+        });
+    }
+    const nav = navItems.map((navItem, index) => (<NavItem key={index} navI={navItem} />))
+    return (
         <ul className="me-auto flex flex-col lg:flex-row" data-twe-navbar-nav-ref>
             {nav}
         </ul>
