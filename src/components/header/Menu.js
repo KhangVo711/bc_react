@@ -9,13 +9,11 @@ export default function Menu() {
             name: "Sản phẩm",
             url: "/product"
         },
-
-
     ]
     if (localStorage.getItem("jwt")) {
         navItems.push(
             {
-                name: "Profile",
+                name: "Hồ sơ",
                 url: "/profile"
             },
             {

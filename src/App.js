@@ -5,7 +5,7 @@ import { ContextProvider } from './components/Context.js';
 export default function App() {
   const location = useLocation();
   return (
-    <>
+    <div className="relatite">
     <ContextProvider>
       {location.pathname !== '/login' && location.pathname !== '/register' && (
         <Header />
@@ -15,7 +15,7 @@ export default function App() {
         <Footer />
       )}
       </ContextProvider>
-    </>
+    </div>
   );
 }
 
