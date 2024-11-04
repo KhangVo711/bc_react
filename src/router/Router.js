@@ -7,6 +7,7 @@ import Product from '../components/product/Product';
 import Register from '../components/auth/Register.js';
 import PrivateRoute from '../components/PrivateRoute.js';
 import Profile from '../components/auth/Profile.js';
+import Cart from '../components/cart/Cart.js';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Product />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: "cart",
+        element: (
+          <PrivateRoute>
+            <Cart />
           </PrivateRoute>
         )
       },

@@ -17,10 +17,49 @@ export const ContextProvider = ({ children }) => {
     
   }, [token]);
 
-  console.log(isData);
+  const [cart, setCart] = useState([]);
+
+    const addToCart = (product) => {
+        setCart((prevCart) => {
+            const existingProduct = prevCart.find((item) => item.masp === product.masp);
+            if (existingProduct) {
+                return prevCart.map((item) =>
+                    item.masp === product.masp ? { ...item, quantity: item.quantity + 1 } : item
+                );
+            }
+            return [...prevCart, { ...product, quantity: 1 }];
+        });
+    };
+
+    const decreaseQuantity = (productId) => {
+      setCart((prevCart) =>
+          prevCart
+              .map((item) =>
+                  item.masp === productId
+                      ? { ...item, quantity: item.quantity - 1 }
+                      : item
+              )
+              .filter((item) => item.quantity > 0) 
+      );
+  };
+  const increaseQuantity = (productId) => {
+    setCart((prevCart) =>
+        prevCart
+            .map((item) =>
+                item.masp === productId
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            )
+            .filter((item) => item.quantity > 0) 
+    );
+};
+
+  const removeItem = (productId) => {
+      setCart((prevCart) => prevCart.filter((item) => item.masp !== productId));
+  };
 
   return (
-    <Context.Provider value= {{isData, setIsData}}>
+    <Context.Provider value= {{isData, setIsData, cart, addToCart, decreaseQuantity, removeItem, increaseQuantity, setCart}}>
       {children}
     </Context.Provider>
   )

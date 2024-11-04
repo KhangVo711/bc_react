@@ -44,6 +44,7 @@ export default function Login() {
       
             if (user.role === "admin") {
               window.location.href = 'http://localhost:5001/';
+              localStorage.removeItem('jwt');
             } else {
               navigate('/');
             }

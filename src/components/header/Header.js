@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Menu from "./Menu";
 
 export default function Header() {
@@ -33,6 +34,7 @@ export default function Header() {
             data-twe-collapse-item
           >
            <Menu />
+           <Link to="/cart" className="text-black/50 hover:text-black dark:text-neutral-200 dark:hover:text-neutral-100 pr-4">Giỏ hàng</Link>
           </div>
         </div>
       </nav>
