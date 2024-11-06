@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Menu from "./Menu";
 
 export default function Header() {
+  const currentPath = window.location.pathname;
+
   return (
     <header>
       {/* Navigation bar */}
@@ -34,7 +36,12 @@ export default function Header() {
             data-twe-collapse-item
           >
            <Menu />
-           <Link to="/cart" className="text-black/50 hover:text-black dark:text-neutral-200 dark:hover:text-neutral-100 pr-4">Giỏ hàng</Link>
+           <Link 
+             to="/cart" 
+             className={`${currentPath === '/cart' ? 'text-black' : 'text-black/50'} font-bold hover:text-black dark:text-neutral-200 dark:hover:text-neutral-100 pr-4`}
+           >
+             Giỏ hàng
+           </Link>
           </div>
         </div>
       </nav>
