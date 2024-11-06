@@ -13,6 +13,10 @@ export default function Menu() {
     if (localStorage.getItem("jwt")) {
         navItems.push(
             {
+                name: "Đơn đã đặt",
+                url: "/order"
+            },
+            {
                 name: "Hồ sơ",
                 url: "/profile"
             },

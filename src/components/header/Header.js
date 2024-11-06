@@ -5,9 +5,9 @@ export default function Header() {
   const currentPath = window.location.pathname;
 
   return (
-    <header>
+    <header className="bg-gray-100 shadow-md mb-5">
       {/* Navigation bar */}
-      <nav className="relative flex w-full items-center justify-between bg-white py-2 shadow-dark-mild dark:bg-body-dark lg:flex-wrap lg:justify-start lg:py-4" data-twe-navbar-ref>
+      <nav className="relative flex w-full items-center justify-between py-2 shadow-dark-mild dark:bg-body-dark lg:flex-wrap lg:justify-start lg:py-4" data-twe-navbar-ref>
         <div className="flex w-full flex-wrap items-center justify-between px-3">
           <div className="flex items-center">
             {/* Hamburger menu button */}

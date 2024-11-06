@@ -8,6 +8,7 @@ import Register from '../components/auth/Register.js';
 import PrivateRoute from '../components/PrivateRoute.js';
 import Profile from '../components/auth/Profile.js';
 import Cart from '../components/cart/Cart.js';
+import Order from '../components/cart/Order.js';
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Cart />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: "order",
+        element: (
+          <PrivateRoute>
+            <Order />
           </PrivateRoute>
         )
       },

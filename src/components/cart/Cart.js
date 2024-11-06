@@ -12,7 +12,7 @@ export default function Cart() {
     };
     const { isData, cart, increaseQuantity, decreaseQuantity, removeItem, setCart } = useContext(Context);
     const [status, setStatus] = useState(false);
-    const totalAmount = cart.reduce((acc, item) => acc + item.gia * item.quantity, 0);
+    const totalAmount = cart.reduce((acc, item) => acc + item.giasp * item.quantity, 0);
     const handleSubmit = async (event) => {
         event.preventDefault();
         const address = event.target.diachinhanhang.value;
@@ -45,7 +45,7 @@ export default function Cart() {
                 const orderDetails = cart.map(item => ({
                     madh: orderId,
                     masp: item.masp,
-                    gia: item.gia,
+                    gia: item.giasp,
                     soluong: item.quantity
                 }));
 
@@ -90,7 +90,7 @@ export default function Cart() {
                             <div key={item.masp} className="w-full flex items-center justify-between p-2 border-b">
                                 <p className="w-1/4">{item.tensp}</p>
                                 <p className="w-1/4">{item.quantity}</p>
-                                <p className="w-1/4">{formatCurrency(item.gia * item.quantity)}</p>
+                                <p className="w-1/4">{formatCurrency(item.giasp * item.quantity)}</p>
                                 <div className="flex w-1/4">
                                     <button onClick={() => increaseQuantity(item.masp)} className="text-white bg-gray-400 px-3.5 py-2 rounded-md mr-2">+</button>
                                     <button onClick={() => decreaseQuantity(item.masp)} className="text-white bg-blue-500 px-4 py-2 rounded-md mr-2 ml-2">-</button>
