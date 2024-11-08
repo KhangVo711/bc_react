@@ -2,7 +2,8 @@ import { formatCurrency } from "../../utils/utils.js";
 import { useContext, useState } from "react";
 import { Context } from '../../components/Context.js';
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import { API } from "../../API/service.js";
+
 
 export default function Cart() {
     const generateOrderId = () => `OD${Date.now()}${Math.floor(Math.random() * 10)}`;
@@ -33,12 +34,7 @@ export default function Cart() {
 
         try {
 
-            const cartResponse = await axios.post('http://localhost:5001/cart', orderData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true
-            });
+            const cartResponse = await API.CreateCart(orderData);
 
             if (cartResponse.status === 200) {
 
@@ -50,12 +46,7 @@ export default function Cart() {
                 }));
 
 
-                const detailResponse = await axios.post('http://localhost:5001/detailCart', orderDetails, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true
-                });
+                const detailResponse = await API.CreateDetailCart(orderDetails);
 
                 if (detailResponse.status === 200) {
 

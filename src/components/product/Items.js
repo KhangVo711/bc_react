@@ -17,7 +17,7 @@ export default function Items({ product, onViewDetail }) {
                     </div>
                     <div className="pt-1 flex items-center justify-between group-hover:px-3 transition ease-in-out duration-200">
                         <p className="mb-4"><strong>{product.tensp}</strong></p>
-                        <p className="mb-4"><strong>{formatCurrency(product.gia)}</strong></p>
+                        <p className="mb-4"><strong>{formatCurrency(product.giasp)}</strong></p>
                     </div>
                     <p className="mb-8 group-hover:px-3 transition ease-in-out duration-200">{product.thongtinchitiet}</p>
                 </div>

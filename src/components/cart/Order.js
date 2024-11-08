@@ -1,7 +1,9 @@
 import { formatCurrency } from "../../utils/utils.js";
+import { formatDateTime } from "../../utils/dateTime.js";
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../../components/Context.js';
-import axios from 'axios';
+import { API } from "../../API/service.js";
+
 
 export default function Order() {
     const { isData } = useContext(Context);
@@ -23,7 +25,7 @@ export default function Order() {
         if (!username) return;
         async function fetchCartOrders() {
             try {
-                const response = await axios.get(`http://localhost:5001/orderCart/${username}`);
+                const response = await API.GetOrderCart(username);
                 setCartOrders(response.data.cartAPI);
             } catch (error) {
                 console.error("Error fetching cart orders:", error);
@@ -38,7 +40,7 @@ export default function Order() {
 
         async function fetchOrderDetails() {
             try {
-                const response = await axios.get(`http://localhost:5001/orders/${selectedOrderId}`);
+                const response = await API.GetOrderId(selectedOrderId);
                 setOrders(response.data.order);
             } catch (error) {
                 console.error("Error fetching order details:", error);
@@ -64,7 +66,7 @@ export default function Order() {
                     <div key={index} className="grid grid-cols-8 gap-6 w-full max-w-4xl p-4 bg-white border-b border-gray-200">
                         <p className="text-center">{index + 1}</p>
                         <p className='col-span-2'>{c_order.madh}</p>
-                        <p className='w-64 col-span-2'>{c_order.ngaydat}</p>
+                        <p className='w-64 col-span-2'>{formatDateTime(c_order.ngaydat)}</p>
                         <p className='w-24'>{c_order.trangthai}</p>
                         <p>{formatCurrency(c_order.tonggia)}</p>
                         <button

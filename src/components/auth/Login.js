@@ -1,7 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import { useState } from 'react';
-import axios from 'axios';
-
+import { API } from "../../API/service.js";
 export default function Login() {
     const navigate = useNavigate();
 
@@ -26,15 +25,8 @@ export default function Login() {
           alert("Giá trị rỗng");
         } else {
           try {
-            const response = await axios.post('http://localhost:5001/APIlogin', formData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                withCredentials: true
-            });
-            // console.log(response.data);
-            // console.log(response.data.token);
+            const response = await API.LoginAPI(formData);
+ 
             const token = response.data.token;
  
             localStorage.setItem("jwt", token);

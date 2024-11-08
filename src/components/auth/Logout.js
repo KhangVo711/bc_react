@@ -1,14 +1,14 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API } from "../../API/service.js";
 
 
 export default function Logout() {
-    const navigate = useNavigate();
-  axios.get('http://localhost:5001/APIlogout', { withCredentials: true })
+  const navigate = useNavigate();
+  API.GetLogoutAPI()
     .then((response) => {
-      console.log(response.data.message);
-        localStorage.removeItem('jwt');  
-        navigate('/login');
+    
+      localStorage.removeItem('jwt');
+      navigate('/login');
     })
     .catch((error) => {
       if (error.response && error.response.status === 401) {
@@ -18,7 +18,7 @@ export default function Logout() {
       }
     });
 
-  return(
+  return (
     <div>
       <h1 className='text-center'>Bạn đã đăng xuất</h1>
     </div>

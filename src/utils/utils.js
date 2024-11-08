@@ -5,3 +5,4 @@ export function formatCurrency(value) {
         minimumFractionDigits: 0,
     }).format(value);
 }
+

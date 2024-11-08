@@ -1,6 +1,7 @@
 import { Context } from '../../components/Context.js';
 import { useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import { API } from "../../API/service.js";
+
 export default function Profile() {
     const { isData } = useContext(Context);
 
@@ -40,11 +41,7 @@ export default function Profile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5001/profile', formData, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            await API.CreateProfileAPI(formData);
             setMessage('Cập nhật thành công');
             setShowProfile(true);
         } catch (error) {
@@ -54,24 +51,16 @@ export default function Profile() {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5001/profile/${isData.username}`, formData, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            await API.UpdateProfileAPI(isData.username, formData);
             setMessage('Sửa thành công');
             
-            axios.get(`http://localhost:5001/profile/${isData.username}`)
-                    .then((response) => {
-                        setIsProfile(response.data.profile);
+            API.GetProfileAPI(isData.username)
+                .then((profile) => {
+                        setIsProfile(profile);
                         setShowProfile(true);
-                        setFormData(response.data.profile)
+                        setFormData(profile)
                     })
-                    .catch((error) => {
-                        setMessage('Chưa cập nhật thông tin');
-
-                        console.log(error);
-                    });
+                    .catch(() => setMessage('Chưa cập nhật thông tin'));
         } catch (error) {
             setMessage(error.response ? error.response.data.message : 'An error occurred');;
         }
@@ -79,21 +68,17 @@ export default function Profile() {
     useEffect(() => {
         if (isData.username) {
             if (showProfile === false) {
-                axios.get(`http://localhost:5001/profile/${isData.username}`)
-                    .then((response) => {
-                        setIsProfile(response.data.profile);
+                API.GetProfileAPI(isData.username)
+                    .then((profile) => {
+                        setIsProfile(profile);
                         setShowProfile(true);
-                        setFormData(response.data.profile)
+                        setFormData(profile)
                     })
-                    .catch((error) => {
-                        setMessage('Chưa cập nhật thông tin');
-
-                        console.log(error);
-                    });
+                    .catch(() => setMessage('Chưa cập nhật thông tin'));
             } else {
-                axios.get(`http://localhost:5001/profile/${isData.username}`)
-                    .then((response) => {
-                        setIsProfile(response.data.profile);
+                API.GetProfileAPI(isData.username)
+                    .then((profile) => {
+                        setIsProfile(profile);
                         setShowProfile(true);
 
                     })

@@ -20,7 +20,7 @@ export default function DetailProduct({detailProduct, detailRef}) {
                                     </div>
                                     <div className="flex">
                                         <p className="text-black text-lg font-bold">Giá: </p>
-                                        <p className="text-black text-lg">{formatCurrency(detailProduct.gia)}</p>
+                                        <p className="text-black text-lg">{formatCurrency(detailProduct.giasp)}</p>
                                     </div>
                                     <div className="flex">
                                         <p className="text-black text-lg font-bold">Loại sản phẩm: </p>

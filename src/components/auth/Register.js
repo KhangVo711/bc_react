@@ -1,6 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import { useState } from 'react';
-import axios from 'axios';
+import { API } from "../../API/service.js";
+
 export default function Register() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -21,11 +22,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5001/register', formData, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            API.RegisterAPI(formData);
             setMessage('Created successfully');
             navigate('/login');
         } catch (error) {

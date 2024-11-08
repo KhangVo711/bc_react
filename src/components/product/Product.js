@@ -1,20 +1,17 @@
 import Items from "./Items"
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import DetailProduct from "./DetailProduct";
+import { API } from "../../API/service.js";
 
 export default function Product() {
     const detailRef = useRef(null);
-    const [products, setProducts] = useState(() => {
-        const savedProducts = localStorage.getItem("products");
-        return savedProducts ? JSON.parse(savedProducts) : [];
-    });
+ 
+    const [products, setProducts] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:5001/product")
+        API.GetProductAPI()
             .then((response) => {
                 if (response.status === 200) {
                     setProducts(response.data.products);
-                    localStorage.setItem("products", JSON.stringify(response.data.products));
                 }
             })
             .catch((error) => {
