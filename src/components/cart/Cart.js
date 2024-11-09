@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Context } from '../../components/Context.js';
 import { Link } from "react-router-dom";
 import { API } from "../../API/service.js";
+import { toast } from 'react-toastify';
 
 
 export default function Cart() {
@@ -52,6 +53,9 @@ export default function Cart() {
 
                     setStatus(true);
                     setCart([]);
+                    toast.success("Success Order", {
+                        autoClose: 1000 
+                    })
                 } else {
                     console.error("Failed to submit order details");
                 }

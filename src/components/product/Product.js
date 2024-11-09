@@ -3,9 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import DetailProduct from "./DetailProduct";
 import { API } from "../../API/service.js";
 
+
 export default function Product() {
     const detailRef = useRef(null);
- 
     const [products, setProducts] = useState([])
     useEffect(() => {
         API.GetProductAPI()
