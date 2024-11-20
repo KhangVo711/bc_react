@@ -24,11 +24,11 @@ export default function DetailProduct({detailProduct, detailRef}) {
                                     </div>
                                     <div className="flex">
                                         <p className="text-black text-lg font-bold">Loại sản phẩm: </p>
-                                        <p className="text-black text-lg">{detailProduct.loaisp}</p>
+                                        <p className="text-black text-lg">{detailProduct.loaisanpham.tenloai}</p>
                                     </div>
                                     <div className="flex">
                                         <p className="text-black text-lg font-bold">Nhà sản xuất: </p>
-                                        <p className="text-black text-lg">{detailProduct.tennsx}</p>
+                                        <p className="text-black text-lg">{detailProduct.nhasanxuat.tennsx}</p>
                                     </div>
                                 </div>
                             </div>

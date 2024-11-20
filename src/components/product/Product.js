@@ -7,6 +7,7 @@ import { API } from "../../API/service.js";
 export default function Product() {
     const detailRef = useRef(null);
     const [products, setProducts] = useState([])
+    console.log(products)
     useEffect(() => {
         API.GetProductAPI()
             .then((response) => {
